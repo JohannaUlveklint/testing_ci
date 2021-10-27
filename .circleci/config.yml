@@ -1,23 +1,23 @@
-# CircleCi 2.0 Python Configuration file
+# CircleCI 2.0 Python Configuration file
 version: 2
 jobs:
   build:
     docker:
-      - image: circleci/python:3.10
+      - image: circleci/python:3.9
 
-    working_directory: ~/project  # Where will it put all files
+    working_directory: ~/project
 
-    steps:  # What shall be executed when start
+    steps:
       # Step 1: checkout repo from GitHub
       - checkout
-      # Step 2: create virtual environment and install dependencies
+      # Step 2: Create virtual environment and install dependencies
       - run:
-        name: install dependecies
-        command: |  # | is needed if command includes several rows
-          python3 -m venv venv
-          . venv/bin/activate  
-          pip install -r requirements.txt
-      # Step 3: Run linter (tells problem with our code) and tests
+          name: install dependencies
+          command: |
+            python3 -m venv venv
+            . venv/bin/activate
+            pip install -r requirements.txt
+      # Step 3: Run linter and tests
       - run:
           name: run tests
           command: |
