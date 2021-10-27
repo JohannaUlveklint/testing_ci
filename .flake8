@@ -1,0 +1,2 @@
+[flake8]  # This makes flake8 only look for PEP8 error in my files
+exclude = .git,__pycache__,venv,.idea,.pytest_cache
