@@ -1,0 +1,26 @@
+# CircleCi 2.0 Python Configuration file
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/python:3.10
+
+    working_directory: ~/project  # Where will it put all files
+
+    steps:  # What shall be executed when start
+      # Step 1: checkout repo from GitHub
+      - checkout
+      # Step 2: create virtual environment and install dependencies
+      - run:
+        name: install dependecies
+        command: |  # | is needed if command includes several rows
+          python3 -m venv venv
+          . venv/bin/activate  # Activates venv
+          pip install -r requirements.txt
+      # Step 3: Run linter (tells problem with our code) and tests
+      - run:
+          name: run tests
+          command: |
+            . venv/bin/activate
+            flake8 --exclude=venv* --statistics  # Excludes all that is in the venv folder
+            pytest -v --cov=string_ops

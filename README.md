@@ -1,2 +1,2 @@
 # Repo for testing CI
-Central repo for testing out circularci integration
+Central repo for testing out CircleCi integration
